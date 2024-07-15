@@ -1,0 +1,65 @@
+scan/templates/scan/hotel_image_form.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Image Upload</title>
+ </head>
+<body>
+   <!-- <h1>Upload Hotel Image</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>  -->
+
+    <!-- Display uploaded image if available
+     {% if hotel.image %}
+        <img src="{{ hotel.image.url }}" alt="Hotel Image">
+   
+    {% endif %} -->
+<!-- ***************************************************************************** -->
+    <h1>Upload Hotel Image</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="image">Take a picture:</label>
+        <input type="file" id="image" name="image" accept="image/*" capture="environment">
+        <button type="submit">Upload</button>
+    </form>
+
+   
+
+
+    <!-- <h1>Capture Image from IP Webcam</h1>
+    <img id="video" src="http://192.168.1.2:8081/video" alt="IP Webcam Stream" width="640" height="480">
+    <button id="capture">Capture</button>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="image" id="image" style="display: none;">
+        <button type="submit">Upload</button>
+    </form>
+    <script>
+        document.getElementById('capture').addEventListener('click', function() {
+            const video = document.getElementById('video');
+            const canvas = document.createElement('canvas');
+            canvas.width = video.width;
+            canvas.height = video.height;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, video.width, video.height);
+            canvas.toBlob(function(blob) {
+                const file = new File([blob], 'capture.jpg', { type: 'image/jpeg' });
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                const input = document.getElementById('image');
+                input.files = dataTransfer.files;
+                document.getElementById('uploadForm').submit();
+            }, 'image/jpeg');
+        });
+    </script> -->
+</body>
+</html>
+
+

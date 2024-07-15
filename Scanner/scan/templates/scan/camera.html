@@ -1,0 +1,30 @@
+<!-- scan/templates/scan/camera.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Access</title>
+</head>
+<body>
+    <h1>Camera Access</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <script>
+        const video = document.getElementById('video');
+        let stream;
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then((videoStream) => {
+                    stream = videoStream;
+                    video.srcObject = stream;
+                })
+                .catch((error) => {
+                    console.error('Error accessing the camera: ', error);
+                });
+        } else {
+            console.error('getUserMedia not supported in this browser.');
+        }
+    </script>
+</body>
+</html>

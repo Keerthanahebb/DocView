@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Detail</title>
+</head>
+<body>
+    <h1>User: {{ user.name }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>UUID: {{ user.id }}</p>  <!-- Displaying UUID -->
+
+    <h2>Upload Images</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {{ form.as_p }}
+        {% endfor %}
+
+        <!-- Mobile camera access -->
+        <h1>Access Mobile Camera</h1>
+        <label for="image">Take a picture:</label>
+        <input type="file" id="image" name="image" accept="image/*" capture="environment"> <!-- 'environment' for rear camera -->
+
+        
+        <button type="submit">Upload</button>
+
+        
+          
+    </form>
+
+    <h2>Uploaded Images</h2>
+    <ul>
+        {% for image in user.images.all %}
+            <li>
+                <img src="{{ image.image.url }}" alt="Image" width="200">
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
