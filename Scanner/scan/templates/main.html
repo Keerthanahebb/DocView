@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/dark_embroidery.png');
+            background-size: cover;
+            /* background-blur: 8px; */
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            max-width: 600px;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .btn:active {
+            background-color: #004494;
+            transform: scale(0.95);
+        }
+        .admin {
+            background-color: #28a745;
+        }
+        .admin:hover {
+            background-color: #218838;
+        }
+        .user {
+            background-color: #ffc107;
+        }
+        .user:hover {
+            background-color: #e0a800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DocView+</h1>
+        <p>DocView+ revolutionizes medical record management by converting paper 
+            documents into secure, digital formats, enhancing efficiency and accessibility.</p>
+        <a href="{% url 'logadm' %}" class="btn admin">Admin</a>
+        <a href="{% url 'login' %}" class="btn user">User</a>
+    </div>
+</body>
+</html>

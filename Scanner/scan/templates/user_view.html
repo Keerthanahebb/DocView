@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        form input[type="file"], form input[type="text"], form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        form button {
+            background-color: #5c9cb8;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #4c82ae;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction:column;
+        }
+        ul li img {
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        ul li a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        nav a{
+            float: right;
+            background-color: #4c82ae;
+            padding:10px; 
+            color:white;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        
+
+    </style>
+   
+</head>
+<body>
+    <div class="container">
+        <h1>User: {{ user.name }}</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>UUID: {{ user.id }}</p>  <!-- Displaying UUID -->
+
+        <!-- <h2>Upload Files</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+                {{ form.as_p }} -->
+                <!-- <input type="text" name="img_name" placeholder="Enter image name"> -->
+            <!-- {% endfor %}
+            <button type="submit">Upload</button>
+        </form> -->
+        <nav> <a href="{% url 'logout' %}" class="btn-logout">Logout</a></nav>
+
+        <h2>Uploaded Files</h2>
+        <ul>
+            {% for image in user.images.all %}
+                <li>
+                    <!-- <img src="{{ image.image.url }}" alt="Image" width="200" height="250"><br> -->
+                    <a href="{{ image.image.url }}" target="_blank"> <!-- Link to full-size image -->
+                        <img src="{{ image.image.url }}" alt="Image" width="200" height="200">
+                    </a>
+
+                    <p class="details">{{ image.img_name }}
+                    <p class="details">{{ image.uploaded_at }}</p>
+                    
+                    <hr> 
+                    <a href="{{ image.image.url }}" download="{{ image.img_name }}">Download</a> <!-- Download link with image name -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
